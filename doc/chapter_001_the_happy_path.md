@@ -18,18 +18,18 @@ creating cross-browser friendly code that would then be optimized by the
 GCC. By using the GCC and GCL, ClojureScript benefits by getting browser
 support and optimization. 
 
-For now, the only GCL code we need to think about are the function provided
+For now, the only GCL code we need to think about are the functions provided
 for namespaces. `require` and `provide`. But, more on that later...
 
 The following commands will download clojurescript and attempt to build it.
 The result of the build is a java .jar file that contains everything needed
-to allow our project to turn ClojureScript file into JavaScript.
+to allow our project to turn ClojureScript files into JavaScript.
 
 The build script will result in a version of org.clojure/clojurescript 
 being created in your local repository (for me, that is _~/.m2/repository_),
 which can then be used as a dependency in our project.
 
-NOTE: You can use a stable release jar by going to [http://clojurescript.org](http.clojurescript.org). I've decided not to just so that I am using the most 
+NOTE: You can use a stable release jar by going to [http://clojurescript.org](http://clojurescript.org). I've decided not to just so that I am using the most 
 current code.
 
 ```bash
@@ -155,7 +155,7 @@ go.
 
 The other options can be ignored for now.
 
-At this point the following commands should succeed.
+At this point the following command should succeed:
 
 ```bash
 lein cljsbuild once dev
@@ -165,7 +165,7 @@ You should also be able to verify that hello-cljs.js was created.
 
 ## Web Server
 
-Compojure was used to provide us with a build in web server for our static
+Compojure was used to provide us with a built in web server for our static
 files that are in resources/public.
 
 Run the server with the following command:
