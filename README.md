@@ -33,7 +33,23 @@ to get complete snaptshots of code that correspond to each chapter.
 ## Chapters
 
 [Chapter 1 - The Happy Path](/doc/chapter_001_the_happy_path.md)
+[Chapter 2 - The Build Hook](/doc/chapter_002_the_build_hook.md)
 
+
+## Resources/Prior Art
+
+For a bare bones startup, David Nolen created the Quick Start documentstion.
+This is essential reading for understanding how to start from scratch, and
+gives context for how to use the clojurescript jar by itself. lein-cljsbuild
+will make some of these things simpler, but read this document if you are
+curious about how to create low-level scripts that use the compiler.
+
+[David Nolen - Quick Start](https://github.com/clojure/clojurescript/wiki/Quick-Start)
+[David Nolen - Mies](https://github.com/swannodette/mies)
+
+In my research, I found a post that was close to my approach to the intitial setup.
+
+[James Hughes - Basic ClojureScript Setup](https://yobriefca.se/blog/2014/05/30/basic-clojurescript-setup/)
 
 ## License
 
