@@ -11,7 +11,14 @@
   :ring {:handler hello-cljs.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.0"]]}}
+                        [ring/ring-mock "0.3.0"]
+                        ;piggieback is used to allow a ClojureScript REPL in emacs
+                        ;NOTE: defaults to using rhino, mozilla's js engine written in Java
+                        [com.cemerick/piggieback "0.2.1"]
+                        [org.clojure/tools.nrepl "0.2.10"]
+                        [cljsbuild "1.1.4"]]
+         :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src"]
                         :incremental true

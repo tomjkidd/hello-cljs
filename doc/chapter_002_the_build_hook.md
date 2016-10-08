@@ -120,7 +120,8 @@ TODO: Fill in more of the gaps, what the values are for each argument
    incremental?
    assert?
    last-dependency-mtimes
-   watching?)```
+   watching?)
+```
 
 ```clojure
 (compile-cljs
