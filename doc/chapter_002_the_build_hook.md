@@ -1,9 +1,10 @@
 # Chapter 2 - The Build Hook
 
 This chapter picks up where we left off, having created a simple ClojureScript
-function, `hello-cljs.core/run`, and calling it from our _index.html_ file.
-We used the `lein-cljsbuild` to compile our code, and a reasonable next step
-is too ask _how does the plugin use the compiler?_.
+function, `hello-cljs.core/run`, and verified that it works by calling it 
+from our _index.html_ file. We used the `lein-cljsbuild` plugin to compile
+our code, and a reasonable next step is too ask _how does the plugin use the 
+compiler?_.
 
 Our main goal is to see how that ClojureScript function we wrote is turned into 
 JavaScript, and the focus of this section is finding an entry point into
@@ -42,7 +43,9 @@ can think of the following substitutions being made as a result of running this
 commmand.
 
 contents of _project.clj_ -> project
+
 "once" -> subtask
+
 ["dev"] -> args
 
 NOTE: The `->` are being used as symbols for substitution. `"once" -> subtask`
@@ -75,7 +78,7 @@ can focus here afterward.
 
 (leiningen.cljsbuild.subproject/make-subproject project crossover-path parsed-builds) -> subproject
 
-wrapped do-form in a try/catch -> try-catch-form
+wrapped `do-form` in a try/catch -> try-catch-form
 
 NOTE: Again, `try-catch-form` is a name I created for ease of discussion.
 
@@ -106,7 +109,8 @@ Again, we'll do call substitutions to get a feel for what steps are involved.
 
 TODO: Fill in more of the gaps, what the values are for each argument
 
-`(cljsbuild.compiler/run-compiler
+```clojure
+(cljsbuild.compiler/run-compiler
    cljs-paths
    checkout-paths
    crossover-path
@@ -116,15 +120,17 @@ TODO: Fill in more of the gaps, what the values are for each argument
    incremental?
    assert?
    last-dependency-mtimes
-   watching?)`
+   watching?)```
 
-`(compile-cljs
+```clojure
+(compile-cljs
     cljs-paths
     compiler-options
     notify-command
     incremental?
     assert?
-    watching?)`
+    watching?)
+```
 
 (apply cljs.build.api/inputs cljspaths) -> inputs
 
