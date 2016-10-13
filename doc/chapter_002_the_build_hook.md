@@ -109,6 +109,39 @@ Again, we'll do call substitutions to get a feel for what steps are involved.
 
 TODO: Fill in more of the gaps, what the values are for each argument
 
+Checkouts and crossover are beyond the scope of this discussion, and their 
+arguments can safely be ignored for our purposes. This means that the first
+point of interest in `do-form` is the let binding where builds# is defined.
+
+NOTE: builds# is a TODO:<name for this>, and ensures that when this form is
+actually evaluated later, the name is unique.
+the hashmap of our build with the id "dev" -> filtered-builds
+:cljsbuild :builds from our project -> builds
+["dev"] -> build-ids
+
+config/parse-notify-command takes :notify-command and turns it into :parsed-notify-command
+This :parsed-notify-command is a hashmap with a :shell key for the shell command, and
+then a key for each option passed in.
+
+:cljsbuild :builds where :id is "def" with config/parse-notify-command appilied -> parsed-builds
+
+our "dev" build -> build#
+:compiler our "dev" build passed to cljs.env/default-compiler-env -> compiler-env#
+starts as an empty map {} -> mtimes#
+
+compiler-env# -> cljs.env/*compiler* through a binding
+
+(:source-paths build#) -> cljs-paths
+don't care... -> checkout-paths
+don't care-> crossover-path
+don't care-> crossover-macro-paths
+(:compiler build#) -> compiler-options
+(:parsed-notify-command build#) -> notify-command
+(:incremental? build#) -> incremental?
+(:assert? build#) -> assert?
+mtimes# -> last-dependency-mtims
+watch? -> watching?
+
 ```clojure
 (cljsbuild.compiler/run-compiler
    cljs-paths
@@ -122,6 +155,16 @@ TODO: Fill in more of the gaps, what the values are for each argument
    last-dependency-mtimes
    watching?)
 ```
+[cljsbuild.util/find-files](https://github.com/emezeske/lein-cljsbuild/blob/master/support/src/cljsbuild/util.clj)
+takes a java.io.File and returns a list of strings that represesnt the
+.getAbsolutePath return String for all files in the directory. Uses
+type to match the type.
+
+get-mtimes is used with these paths(String) to get mtimes(Long, from .lastModified on java.io.File created from String)
+mtime maps have path(String) keys to mtime(Long) values
+
+list-modified uses output-mtime (the last time the :output-to JavaScript file was modified)
+to determine which files are outdated.
 
 ```clojure
 (compile-cljs
