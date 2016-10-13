@@ -19,7 +19,9 @@
                         ;NOTE: defaults to using rhino, mozilla's js engine written in Java
                         [com.cemerick/piggieback "0.2.1"]
                         [org.clojure/tools.nrepl "0.2.10"]
-                        [cljsbuild "1.1.4"]]
+                        [cljsbuild "1.1.4"]
+                        [prismatic/schema "1.1.3"]
+                        ]
          :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 
   :cljsbuild {:builds [{:id "dev"
