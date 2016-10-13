@@ -5,7 +5,10 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
-                 [org.clojure/clojurescript "1.9.277"]]
+                 [org.clojure/clojurescript "1.9.277"]
+                 ; NOTE: This dependency has a jar file that the compiler knows how to handle
+                 ; :foreign-deps and :externs compiler-options are provided through deps.cljs file
+                 [cljsjs/toastr "2.1.2-0"]]
   :plugins [[lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.4"]]
   :ring {:handler hello-cljs.handler/app}
